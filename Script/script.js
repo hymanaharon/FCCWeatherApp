@@ -6,9 +6,14 @@ $(document).ready(function(){
     var city;
     var countryCode;
     var weatherType;    
-        $.getJSON("http://ip-api.com/json", function(data) {
+         /* $.getJSON("http://ip-api.com/json", function(data) { 
                   lat=data.lat;
                   long=data.lon;
+         */
+    if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+   lat=position.coords.latitude;
+   long=position.coords.longitude;
                   
            
             var api ='http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=20a5ca4f642080493675e573392c7e03';    
@@ -57,7 +62,7 @@ $(document).ready(function(){
                 else if(900<= bgWeather){
                     $('#bg').attr("src","images/tornado.jpg");
                 };
-                
+              });  
             });
         }); 
  
